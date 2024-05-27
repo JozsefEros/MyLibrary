@@ -1,4 +1,4 @@
-package jozsef.eros.com.springtest;
+package jozsef.eros.com.mylibrary;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

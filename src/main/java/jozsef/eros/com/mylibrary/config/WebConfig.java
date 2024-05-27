@@ -1,4 +1,4 @@
-package jozsef.eros.com.springtest.config;
+package jozsef.eros.com.mylibrary.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

@@ -1,4 +1,4 @@
-package jozsef.eros.com.springtest.model;
+package jozsef.eros.com.mylibrary.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -17,27 +16,27 @@ public class Reader {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@NotBlank(message = "A vezetéknév nem lehet üres!")
-    //@Column(nullable = false)
+    @NotBlank(message = "A vezetéknév nem lehet üres!")
+    @Column(nullable = false)
     private String firstName;
 
-    //@NotBlank(message = "A keresztnév nem lehet üres!")
-    //@Column(nullable = false)
+    @NotBlank(message = "A keresztnév nem lehet üres!")
+    @Column(nullable = false)
     private String middleName;
 
     private String lastName;
     @Min(value = 1924, message = "A születési év nem lehet korábbi, mint 1924!")
-    //@NotNull(message = "A születési év nem lehet üres!")
-    //@Column(nullable = false)
+    @NotNull(message = "A születési év nem lehet üres!")
+    @Column(nullable = false)
     private int yearOfBirth;
 
-    //@Column(nullable = false)
+    @Column(nullable = false)
     private Date registrationDate;
 
-    //@Column(nullable = false)
+    @Column(nullable = false)
     private LocalDate createdAt;
 
-    //@Column(nullable = false)
+    @Column(nullable = false)
     private LocalDate modifiedAt;
 
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)

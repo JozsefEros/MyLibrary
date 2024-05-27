@@ -1,7 +1,7 @@
-package jozsef.eros.com.springtest.service;
+package jozsef.eros.com.mylibrary.service;
 
-import jozsef.eros.com.springtest.model.Reader;
-import jozsef.eros.com.springtest.repository.ReaderRepository;
+import jozsef.eros.com.mylibrary.model.Reader;
+import jozsef.eros.com.mylibrary.repository.ReaderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

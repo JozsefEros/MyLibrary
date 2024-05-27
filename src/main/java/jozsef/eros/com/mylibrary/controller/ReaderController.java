@@ -1,8 +1,8 @@
-package jozsef.eros.com.springtest.controller;
+package jozsef.eros.com.mylibrary.controller;
 
 import jakarta.validation.Valid;
-import jozsef.eros.com.springtest.model.Reader;
-import jozsef.eros.com.springtest.service.ReaderService;
+import jozsef.eros.com.mylibrary.model.Reader;
+import jozsef.eros.com.mylibrary.service.ReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

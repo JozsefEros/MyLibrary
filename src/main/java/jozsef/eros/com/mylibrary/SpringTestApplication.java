@@ -1,4 +1,4 @@
-package jozsef.eros.com.springtest;
+package jozsef.eros.com.mylibrary;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
