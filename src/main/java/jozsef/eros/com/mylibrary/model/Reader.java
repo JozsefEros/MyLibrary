@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "readers")
@@ -39,8 +40,8 @@ public class Reader {
     @Column(nullable = false)
     private LocalDate modifiedAt;
 
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private Set<Reader> readers;
+    @OneToMany(mappedBy = "reader", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Lending> lendings;
 
     public Long getId() {
         return id;

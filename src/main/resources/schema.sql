@@ -18,5 +18,5 @@ CREATE TABLE catalog (
     publisher VARCHAR(100) NOT NULL,
     language VARCHAR(20) NOT NULL,
     isbn VARCHAR(13) NOT NULL,
-    is_available boolean NULL
+    is_available VARCHAR(4) NULL
 )
