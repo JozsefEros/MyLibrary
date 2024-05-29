@@ -51,4 +51,9 @@ public class ReaderController {
         readerService.deleteReader(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/search")
+    public List<Reader> findReadersByName(@RequestParam String name) {
+        return readerService.findReadersByName(name);
+    }
 }

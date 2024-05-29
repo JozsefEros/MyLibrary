@@ -29,7 +29,7 @@ public class LendingService {
         Lending lending = lendingRepository.findById(id).orElse(null);
         if (lending != null) {
             lending.setReader(lendingDetails.getReader());
-            lending.setCatalog(lendingDetails.getCatalog());
+            lending.setBook(lendingDetails.getBook());
             lending.setLendingDate(lendingDetails.getLendingDate());
             lending.setExpirationDate(lendingDetails.getExpirationDate());
             return lendingRepository.save(lending);

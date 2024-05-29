@@ -14,14 +14,10 @@ public class Lending {
     private Long id;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
-    private Reader reader;
+    private int reader;
 
     @NotNull
-    @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
-    private Catalog catalog;
+    private int book;
 
     @Column(nullable = false)
     private LocalDate lendingDate;
@@ -32,14 +28,6 @@ public class Lending {
     @Column()
     private LocalDate returnDate;
 
-    public LocalDate getReturnDate() {
-        return returnDate;
-    }
-
-    public void setReturnDate(LocalDate returnDate) {
-        this.returnDate = returnDate;
-    }
-
     public Long getId() {
         return id;
     }
@@ -48,20 +36,22 @@ public class Lending {
         this.id = id;
     }
 
-    public @NotNull Reader getReader() {
+    @NotNull
+    public int getReader() {
         return reader;
     }
 
-    public void setReader(@NotNull Reader reader) {
+    public void setReader(@NotNull int reader) {
         this.reader = reader;
     }
 
-    public @NotNull Catalog getCatalog() {
-        return catalog;
+    @NotNull
+    public int getBook() {
+        return book;
     }
 
-    public void setCatalog(@NotNull Catalog catalog) {
-        this.catalog = catalog;
+    public void setBook(@NotNull int book) {
+        this.book = book;
     }
 
     public LocalDate getLendingDate() {
@@ -78,5 +68,13 @@ public class Lending {
 
     public void setExpirationDate(LocalDate expirationDate) {
         this.expirationDate = expirationDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(LocalDate returnDate) {
+        this.returnDate = returnDate;
     }
 }

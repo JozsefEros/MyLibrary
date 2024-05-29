@@ -37,9 +37,9 @@ public class Catalog {
     private String isbn;
 
     @Column(nullable = false)
-    private String isAvailable;
+    private String available;
 
-    @OneToMany(mappedBy = "catalog", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Lending> lendings;
 
 
@@ -108,10 +108,10 @@ public class Catalog {
     }
 
     public String getAvailable() {
-        return isAvailable;
+        return available;
     }
 
     public void setAvailable(String available) {
-        this.isAvailable = isAvailable;
+        this.available = available;
     }
 }

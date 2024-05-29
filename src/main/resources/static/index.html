@@ -6,44 +6,93 @@
     <title>My Mini Library</title>
     <link rel="stylesheet" href="/css/styles.css">
     <script src="/js/readers.js"></script>
+    <script src="/js/css.js"></script>
 </head>
 <body>
+<nav>
+    <ul>
+        <li><a href="index.html">Olvasók</a></li>
+        <li><a href="catalog.html">Könyvek</a></li>
+        <li><a href="lending.html">Kölcsönzés</a></li>
+    </ul>
+</nav>
 <h1>Olvasók kezelése</h1>
-<h2>Új olvasó hozzáadása</h2>
-<form onsubmit="event.preventDefault(); addReader();">
-    <input type="text" id="firstNameNew" placeholder="Vezetéknév" required>
-    <input type="text" id="middleNameNew" placeholder="Keresztnév" required>
-    <input type="text" id="lastNameNew" placeholder="2. keresztnév">
-    <input type="number" id="yearOfBirthNew" placeholder="Születési év" required>
-    <input type="date" id="registrationDateNew" placeholder="Regisztráció dátuma" required>
-    <br>
-    <button id="new-reader-button">Új olvasó felvétele</button>
-</form>
 
-<h2>Olvasó adatainak frissítése</h2>
-<form onsubmit="event.preventDefault(); getReaderById();">
-    <input type="number" id="readerId" placeholder="Olvasó azonosítója" required>
-    <br>
-    <button type="submit">Keresés</button>
-</form>
-<form onsubmit="event.preventDefault(); updateReader();">
-    <input type="text" id="firstName" placeholder="Vezetéknév" required>
-    <input type="text" id="middleName" placeholder="Keresztnév" required>
-    <input type="text" id="lastName" placeholder="2. keresztnév">
-    <input type="number" id="yearOfBirth" placeholder="Születési év" required>
-    <input type="date" id="registrationDate" placeholder="Regisztráció dátuma">
-    <br>
-    <button id="modify-reader-button">Módosítás</button>
-</form>
-<h2>Olvasó törlése</h2>
-<form onsubmit="event.preventDefault(); deleteReader();">
-    <input type="number" id="readerIdDelete" placeholder="Olvasó azonosítója" required>
-    <br>
-    <button id="delete-reader-button">Törlés</button>
-</form>
-<form onsubmit ='preventDefault(); resetForms()'>
-    <button id="reset-form">Alaphelyzet</button>
-</form>
+<div class="form-container">
+    <h2>Új olvasó hozzáadása</h2>
+    <form onsubmit="event.preventDefault(); addReader();">
+        <div class="form-row">
+            <input type="text" id="firstNameNew" placeholder="Vezetéknév" required>
+            <input type="text" id="middleNameNew" placeholder="Keresztnév" required>
+        </div>
+        <div class="form-row">
+            <input type="text" id="lastNameNew" placeholder="2. keresztnév">
+            <select id="yearOfBirthNew" required>
+                <option value="" disabled selected>Születési év</option>
+            </select>
+        </div>
+        <div class="form-row">
+            <input type="date" id="registrationDateNew" placeholder="Regisztráció dátuma" required>
+        </div>
+        <div class="form-row full-width">
+            <button id="new-reader-button">Új olvasó felvétele</button>
+        </div>
+    </form>
+</div>
+
+<div class="form-container">
+    <h2>Olvasó adatainak frissítése</h2>
+    <form onsubmit="event.preventDefault(); getReaderById();">
+        <div class="form-row full-width">
+            <input type="number" id="readerId" placeholder="Olvasó azonosítója" required>
+        </div>
+        <div class="form-row full-width">
+            <button type="submit">Keresés</button>
+        </div>
+    </form>
+    <form onsubmit="event.preventDefault(); updateReader();" class="right-form">
+        <div class="form-row">
+            <input type="text" id="firstName" placeholder="Vezetéknév" required>
+            <input type="text" id="middleName" placeholder="Keresztnév" required>
+        </div>
+        <div class="form-row">
+            <input type="text" id="lastName" placeholder="2. keresztnév">
+            <select id="yearOfBirth" required>
+                <option value="" disabled selected>Születési év</option>
+                <!-- Évek generálása JavaScript-tel -->
+            </select>
+        </div>
+        <div class="form-row">
+            <input type="date" id="registrationDate" placeholder="Regisztráció dátuma">
+        </div>
+        <div class="form-row full-width">
+            <button id="modify-reader-button">Módosítás</button>
+        </div>
+    </form>
+</div>
+
+<div class="form-container full-width">
+    <h2>Olvasó törlése</h2>
+    <form onsubmit="event.preventDefault(); deleteReader();">
+        <div class="form-row full-width">
+            <input type="number" id="readerIdDelete" placeholder="Olvasó azonosítója" required>
+        </div>
+        <div class="form-row full-width">
+            <button id="delete-reader-button">Törlés</button>
+        </div>
+    </form>
+</div>
+
+<div class="form-container full-width">
+    <h2>Alaphelyzet</h2>
+    <form onsubmit="event.preventDefault(); resetForms();">
+        <div class="form-row full-width">
+            <button id="reset-form">Alaphelyzet</button>
+        </div>
+    </form>
+</div>
+
+
 <h2>Olvasók</h2>
 
 <table id="readers-table">
@@ -60,14 +109,14 @@
     </tr>
     </thead>
 
-        <tbody id="readers-body">
-            <!-- Itt jelennek majd meg a sorok -->
-        </tbody>
+    <tbody id="readers-body">
+    <!-- Itt jelennek majd meg a sorok -->
+    </tbody>
 </table>
-    <script>
-        document.getElementById('new-reader-button').addEventListener('click', () => fetchReadersTable());
-        document.getElementById('delete-reader-button').addEventListener('click', () => fetchReadersTable());
-        document.getElementById('modify-reader-button').addEventListener('click', () => fetchReadersTable());
-    </script>
+<script>
+    document.getElementById('new-reader-button').addEventListener('click', () => fetchReadersTable());
+    document.getElementById('delete-reader-button').addEventListener('click', () => fetchReadersTable());
+    document.getElementById('modify-reader-button').addEventListener('click', () => fetchReadersTable());
+</script>
 </body>
 </html>

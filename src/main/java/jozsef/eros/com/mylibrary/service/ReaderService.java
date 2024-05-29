@@ -44,4 +44,7 @@ public class ReaderService {
     public void deleteReader(Long id) {
         readerRepository.deleteById(id);
     }
+    public List<Reader> findReadersByName(String name) {
+        return readerRepository.findByNameContaining(name);
+    }
 }

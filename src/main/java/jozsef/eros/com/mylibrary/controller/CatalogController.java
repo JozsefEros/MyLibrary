@@ -2,6 +2,7 @@ package jozsef.eros.com.mylibrary.controller;
 
 import jakarta.validation.Valid;
 import jozsef.eros.com.mylibrary.model.Catalog;
+import jozsef.eros.com.mylibrary.model.Reader;
 import jozsef.eros.com.mylibrary.service.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -48,5 +49,15 @@ public class CatalogController {
     public ResponseEntity<Void> deleteCatalog(@PathVariable Long id) {
         catalogService.deleteCatalog(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/searchTitles")
+    public List<Catalog> findBooksByTitle(@RequestParam String title) {
+        return catalogService.findBooksByTitle(title);
+    }
+
+    @GetMapping("/searchAuthors")
+    public List<Catalog> findBooksByAuthor(@RequestParam String author) {
+        return catalogService.findBooksByAuthor(author);
     }
 }

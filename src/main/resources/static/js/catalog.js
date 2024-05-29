@@ -23,7 +23,7 @@ async function fetchCatalogTable() {
                     <td>${book.published}</td>
                     <td>${book.language}</td>
                     <td>${book.isbn}</td>
-                    <td>${book.isAvailable}</td>
+                    <td>${book.available}</td>
                 `;
         booksBody.appendChild(tr);
     });
@@ -40,7 +40,7 @@ async function addBook() {
     const published = document.getElementById('publishedNew').value;
     const language = document.getElementById('languageNew').value;
     const isbn = document.getElementById('isbnNew').value;
-    const isAvailable = document.getElementById('isAvailableNew').checked;
+    const available = document.getElementById('isAvailableNew').value;
 
     try {
         const response = await fetch('/catalog', {
@@ -56,7 +56,7 @@ async function addBook() {
                 published,
                 language,
                 isbn,
-                isAvailable
+                available
             })
         });
 
@@ -76,7 +76,7 @@ async function addBook() {
     document.getElementById('publishedNew').value = '';
     document.getElementById('languageNew').value = '';
     document.getElementById('isbnNew').value = '';
-    document.getElementById('isAvailableNew').checked = false;
+    document.getElementById('availableNew').value = '';
 
 }
 
@@ -94,7 +94,7 @@ async function getBookById() {
             document.getElementById('publisher').value = book.publisher;
             document.getElementById('language').value = book.language;
             document.getElementById('isbn').value = book.isbn;
-            document.getElementById('isAvailable').checked = book.isAvailable;
+            document.getElementById('available').value = book.available;
 
         } else {
             console.error('A könyv nem található!');
@@ -113,7 +113,7 @@ async function updateBook() {
     const publisher = document.getElementById('publisher').value;
     const language = document.getElementById('language').value;
     const isbn = document.getElementById('isbn').value;
-    const isAvailable = document.getElementById('isAvailable').checked;
+    const isAvailable = document.getElementById('available').value;
 
     try {
         const response = await fetch(`/catalog/${id}`, {
@@ -129,7 +129,7 @@ async function updateBook() {
                 publisher,
                 language,
                 isbn,
-                isAvailable
+                available
             })
         });
 
@@ -149,7 +149,7 @@ async function updateBook() {
     document.getElementById('published').value = '';
     document.getElementById('language').value = '';
     document.getElementById('isbn').value = ''
-    document.getElementById('isAvailable').value = false;
+    document.getElementById('available').value = '';
 
 }
 
@@ -197,6 +197,6 @@ window.onload = function() {
     document.getElementById('bookId').value = null;
     document.getElementById('language').value = '';
     document.getElementById('isbn').value = '';
-    document.getElementById('isAvailable').value = false;
+    document.getElementById('available').value = '';
     document.getElementById('bookIdDelete').value = null;
 }

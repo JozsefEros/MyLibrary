@@ -1,6 +1,7 @@
 package jozsef.eros.com.mylibrary.service;
 
 import jozsef.eros.com.mylibrary.model.Catalog;
+import jozsef.eros.com.mylibrary.model.Reader;
 import jozsef.eros.com.mylibrary.repository.CatalogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,5 +42,13 @@ public class CatalogService {
 
     public void deleteCatalog(Long id) {
         catalogRepository.deleteById(id);
+    }
+
+    public List<Catalog> findBooksByTitle(String title) {
+        return catalogRepository.findByTitleContaining(title);
+    }
+
+    public List<Catalog> findBooksByAuthor(String author) {
+        return catalogRepository.findByAuthorContaining(author);
     }
 }

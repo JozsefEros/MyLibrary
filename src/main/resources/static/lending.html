@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kölcsönzés</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/lending.js"></script>
+    <script src="/js/css.js"></script>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="index.html">Olvasók</a></li>
+        <li><a href="catalog.html">Könyvek</a></li>
+        <li><a href="lending.html">Kölcsönzés</a></li>
+    </ul>
+</nav>
+<h1>Kölcsönzés</h1>
+<div class="form-container">
+    <h2>Olvasó keresése</h2>
+    <form onsubmit="event.preventDefault(); searchReaders();">
+        <div class="form-row">
+            <input type="text" id="searchReader" placeholder="Keresés név alapján...">
+            <button onclick="searchReaders()">Keresés</button>
+        </div>
+    </form>
+</div>
+<table id="resultsReaders">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Firstname</th>
+        <th>Middlename</th>
+        <th>Lastname</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Results will be inserted here -->
+    </tbody>
+</table>
+<p><strong>Kijelölt olvasó:</strong></p>
+<span id="selectedReaderId"></span> - <span id="selectedReaderName">Nincs kiválasztva</span>
+<div class="form-container">
+    <h2>Könyv keresése</h2>
+    <form onsubmit="event.preventDefault(); searchBooks();">
+        <div class="form-row">
+            <input type="text" id="searchBook" placeholder="Keresés cím alapján...">
+            <button onclick="searchBooks()">Keresés</button>
+        </div>
+    </form>
+    <form onsubmit="event.preventDefault(); searchAuthors();">
+        <div class="form-row">
+            <input type="text" id="searchAuthor" placeholder="Keresés szerző alapján...">
+            <button onclick="searchAuthors()">Keresés</button>
+        </div>
+    </form>
+</div>
+<table id="resultsBooks">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>A könyv címe</th>
+        <th>Szerző</th>
+        <th>Kölcsönözhető</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Results will be inserted here -->
+    </tbody>
+</table>
+<p><strong>Kiválasztott könyv:</strong></p> <span id="selectedBookId">Nincs kiválasztva</span>
+<p><button onclick="createLending()">Kikölcsönöz</button></p>
+</body>
+</html>

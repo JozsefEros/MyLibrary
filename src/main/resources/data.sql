@@ -36,7 +36,7 @@ INSERT INTO catalog (
     publisher,
     language,
     isbn,
-    is_available
+    available
 )
 VALUES
 

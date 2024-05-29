@@ -6,52 +6,97 @@
     <title>My Mini Library - Catalog</title>
     <link rel="stylesheet" href="/css/styles.css">
     <script src="/js/catalog.js"></script>
+    <script src="/js/css.js"></script>
 </head>
 <body>
-<h1>Katalógus</h1>
-<h2>Új könyv felvétele a könyvtárba</h2>
-<form onsubmit="event.preventDefault(); addBook();">
-    <input type="text" id="titleNew" placeholder="A könyv címe" required>
-    <input type="text" id="authorNew" placeholder="Szerző neve" required>
-    <input type="text" id="genreNew" placeholder="Műfaj">
-    <input type="number" id="publishedNew" placeholder="Kiadás éve" required>
-    <br>
-    <input type="text" id="publisherNew" placeholder="Kiadó" >
-    <input type="text" id="languageNew" placeholder="Nyelv" >
-    <input type="text" id="isbnNew" placeholder="ISBN szám" >
-    <input type="text" id="isAvailableNew" placeholder="Elérhető" >
-    <br>
-    <button id="new-book-button">Új könyv felvétele</button>
-</form>
+<nav>
+    <ul>
+        <li><a href="index.html">Olvasók</a></li>
+        <li><a href="catalog.html">Könyvek</a></li>
+        <li><a href="lending.html">Kölcsönzés</a></li>
+    </ul>
+</nav>
 
-<h2>Könyv adatainak frissítése</h2>
-<form onsubmit="event.preventDefault(); getBookById();">
-    <input type="number" id="bookId" placeholder="Könyv azonosítója" required>
-    <br>
-    <button type="submit">Keresés</button>
-</form>
-<form onsubmit="event.preventDefault(); updateBook();">
-    <input type="text" id="title" placeholder="A könyv címe" required>
-    <input type="text" id="author" placeholder="Szerző neve" required>
-    <input type="text" id="genre" placeholder="Műfaj">
-    <input type="number" id="published" placeholder="Kiadás éve" required>
-    <br>
-    <input type="text" id="publisher" placeholder="Kiadó" >
-    <input type="text" id="language" placeholder="Nyelv" >
-    <input type="text" id="isbn" placeholder="ISBN szám" >
-    <input type="text" id="isAvailable" placeholder="Elérhető" >
-    <br>
-    <button id="modify-book-button">Módosítás</button>
-</form>
-<h2>Könyv törlése a könyvtárból</h2>
-<form onsubmit="event.preventDefault(); deleteBook();">
-    <input type="number" id="bookIdDelete" placeholder="Könyv azonosítója" required>
-    <br>
-    <button id="delete-book-button">Törlés</button>
-</form>
-<form onsubmit ='preventDefault(); resetForms()'>
-    <button id="reset-form">Alaphelyzet</button>
-</form>
+<h1>Katalógus</h1>
+<div class="form-container">
+    <h2>Új könyv felvétele a könyvtárba</h2>
+    <form onsubmit="event.preventDefault(); addBook();">
+        <div class="form-row">
+            <input type="text" id="titleNew" placeholder="A könyv címe" required>
+            <input type="text" id="authorNew" placeholder="Szerző neve" required>
+        </div>
+        <div class="form-row">
+            <input type="text" id="genreNew" placeholder="Műfaj">
+            <input type="number" id="publishedNew" placeholder="Kiadás éve" required>
+        </div>
+        <div class="form-row">
+            <input type="text" id="publisherNew" placeholder="Kiadó" >
+            <input type="text" id="languageNew" placeholder="Nyelv" >
+        </div>
+        <div class="form-row">
+            <input type="text" id="isbnNew" placeholder="ISBN szám" >
+            <input type="text" id="isAvailableNew" placeholder="Elérhető" >
+        </div>
+        <div class="form-row full-width">
+            <button id="new-book-button">Új könyv felvétele</button>
+        </div>
+    </form>
+</div>
+
+<div class="form-container">
+    <h2>Könyv adatainak frissítése</h2>
+    <form onsubmit="event.preventDefault(); getBookById();">
+        <div class="form-row full-width">
+            <input type="number" id="bookId" placeholder="Könyv azonosítója" required>
+        </div>
+        <div class="form-row full-width">
+            <button type="submit">Keresés</button>
+        </div>
+    </form>
+    <form onsubmit="event.preventDefault(); updateBook();">
+        <div class="form-row">
+            <input type="text" id="title" placeholder="A könyv címe" required>
+            <input type="text" id="author" placeholder="Szerző neve" required>
+        </div>
+        <div class="form-row">
+            <input type="text" id="genre" placeholder="Műfaj">
+            <input type="number" id="published" placeholder="Kiadás éve" required>
+        </div>
+        <div class="form-row">
+            <input type="text" id="publisher" placeholder="Kiadó" >
+            <input type="text" id="language" placeholder="Nyelv" >
+        </div>
+        <div class="form-row">
+            <input type="text" id="isbn" placeholder="ISBN szám" >
+            <input type="text" id="isAvailable" placeholder="Elérhető" >
+        </div>
+        <div class="form-row full-width">
+            <button id="modify-book-button">Módosítás</button>
+        </div>
+    </form>
+</div>
+
+<div class="form-container">
+    <h2>Könyv törlése a könyvtárból</h2>
+    <form onsubmit="event.preventDefault(); deleteBook();">
+        <div class="form-row full-width">
+            <input type="number" id="bookIdDelete" placeholder="Könyv azonosítója" required>
+        </div>
+        <div class="form-row full-width">
+            <button id="delete-book-button">Törlés</button>
+        </div>
+    </form>
+</div>
+
+<div class="form-container full-width">
+    <h2>Alaphelyzet</h2>
+    <form onsubmit ='preventDefault(); resetForms()'>
+        <div class="form-row full-width">
+            <button id="reset-form">Alaphelyzet</button>
+        </div>
+    </form>
+</div>
+
 <h2>Könyvek</h2>
 
 <table id="books-table">
