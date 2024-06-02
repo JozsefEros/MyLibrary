@@ -20,6 +20,7 @@ async function fetchReadersTable() {
                 `;
         readersBody.appendChild(tr);
     });
+    showMessageModal('Az olvasók listája sikeresen betöltve!', true);
 }
 
 async function addReader() {
@@ -47,12 +48,15 @@ async function addReader() {
 
         if (response.ok) {
             fetchReadersTable();
+            showMessageModal('Az új olvasó sikeresen felvéve az adatbázisba!', true);
         } else {
             const errorData = await response.json();
-            console.error('Hiba az új olvasó hozzáadásakor!:', response.statusText, errorData);
+            console.error('Hiba az új olvasó hozzáadásakor!', response.statusText, errorData);
+            showMessageModal('Hiba az új olvasó hozzáadásakor!', false);
         }
     } catch (error) {
         console.error('Hiba az adatok betöltésekor!:', error);
+        showMessageModal('Hiba az új olvasó hozzáadásakor!', false);
     }
     document.getElementById('firstNameNew').value = '';
     document.getElementById('middleNameNew').value = '';
@@ -74,12 +78,14 @@ async function getReaderById() {
             document.getElementById('lastName').value = reader.lastName;
             document.getElementById('yearOfBirth').value = reader.yearOfBirth;
             document.getElementById('registrationDate').value = reader.registrationDate.split('T')[0];
-
+            showMessageModal('Az olvasó adatai sikeresen lekérve az adatbázisból!', true);
         } else {
             console.error('Az olvasó nem található!');
+            showMessageModal('Az olvasó nem található!', false);
         }
     } catch (error) {
         console.error('Hiba az adatok betöltésekor!:', error);
+        showMessageModal('Hiab az olvasó adatainak betöltésekor!', false);
     }
 }
 
@@ -110,12 +116,15 @@ async function updateReader() {
 
         if (response.ok) {
             fetchReadersTable();
+            showMessageModal('Az olvasó adatai sikeresen frissítve!', true);
         } else {
             const errorData = await response.json();
             console.error('Hiba az adatok frissítése során:', response.statusText, errorData);
+            showMessageModal('Hiba az olvasó adatainak frissítésekor!', false);
         }
     } catch (error) {
         console.error('Hiba az adatok betöltésekor!:', error);
+        showMessageModal('Hiba az olvasó adatainak frissítésekor!', false);
     }
     document.getElementById('readerId').value = null;
     document.getElementById('firstName').value = '';
@@ -134,11 +143,14 @@ async function deleteReader() {
 
         if (response.ok) {
             fetchReadersTable();
+            showMessageModal('Az olvasót sikeresen töröltük!', true);
         } else {
             console.error('Failed to delete reader');
+            showMessageModal('Hiba az olvasó törlése során!', false);
         }
     } catch (error) {
         console.error('Error during fetch:', error);
+        showMessageModal('Hiba az olvasó törlése során!', false);
     }
     document.getElementById('readerIdDelete').value = null;
 

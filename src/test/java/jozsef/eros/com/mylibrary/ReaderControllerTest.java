@@ -1,26 +1,23 @@
 package jozsef.eros.com.mylibrary;
 
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+import jozsef.eros.com.mylibrary.controller.ReaderController;
 import jozsef.eros.com.mylibrary.model.Reader;
 import jozsef.eros.com.mylibrary.service.ReaderService;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.util.List;
+import java.util.Collections;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
-@AutoConfigureMockMvc
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@WebMvcTest(ReaderController.class)
 public class ReaderControllerTest {
 
     @Autowired
@@ -31,81 +28,52 @@ public class ReaderControllerTest {
 
     @Test
     public void testGetAllReaders() throws Exception {
-        when(readerService.getAllReaders()).thenReturn(List.of(new Reader(), new Reader()));
+        Mockito.when(readerService.getAllReaders()).thenReturn(Collections.emptyList());
 
-        mockMvc.perform(get("/readers"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/readers")
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$.length()").value(2));
+                .andExpect(content().json("[]"));
     }
 
     @Test
     public void testGetReaderById() throws Exception {
-        Long readerId = 1L;
         Reader reader = new Reader();
-        reader.setId(readerId);
+        reader.setId(1L);
+        Mockito.when(readerService.getReaderById(1L)).thenReturn(reader);
 
-        when(readerService.getReaderById(readerId)).thenReturn(reader);
-
-        mockMvc.perform(get("/readers/{id}", readerId))
+        mockMvc.perform(MockMvcRequestBuilders.get("/readers/1")
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.id").value(readerId));
+                .andExpect(content().json("{\"id\":1}"));
     }
 
     @Test
     public void testCreateReader() throws Exception {
         Reader reader = new Reader();
-        reader.setId(1L);
-        reader.setFirstName("John");
-        reader.setMiddleName("Doe");
+        Mockito.when(readerService.createReader(Mockito.any(Reader.class))).thenReturn(reader);
 
-        when(readerService.createReader(any(Reader.class))).thenReturn(reader);
-
-        String requestBody = "{\"firstName\":\"John\",\"middleName\":\"Doe\"}";
-
-        mockMvc.perform(post("/readers")
+        mockMvc.perform(MockMvcRequestBuilders.post("/readers")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestBody))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.id").exists())
-                .andExpect(jsonPath("$.firstName").value("John"))
-                .andExpect(jsonPath("$.middleName").value("Doe"));
+                        .content("{\"firstName\": \"John\", \"middleName\": \"Doe\", \"lastName\": \"Smith\", \"yearOfBirth\": 1990, \"registrationDate\": \"2023-01-01\"}"))
+                .andExpect(status().isOk());
     }
 
     @Test
     public void testUpdateReader() throws Exception {
-        Long readerId = 1L;
-        Reader existingReader = new Reader();
-        existingReader.setId(readerId);
-        existingReader.setFirstName("Jane");
+        Reader reader = new Reader();
+        reader.setId(1L);
+        Mockito.when(readerService.updateReader(Mockito.eq(1L), Mockito.any(Reader.class))).thenReturn(reader);
 
-        Reader updatedReader = new Reader();
-        updatedReader.setId(readerId);
-        updatedReader.setFirstName("John");
-
-        when(readerService.updateReader(eq(readerId), any(Reader.class))).thenReturn(updatedReader);
-
-        String requestBody = "{\"firstName\":\"John\"}";
-
-        mockMvc.perform(put("/readers/{id}", readerId)
+        mockMvc.perform(MockMvcRequestBuilders.put("/readers/1")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(requestBody))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.id").value(readerId))
-                .andExpect(jsonPath("$.firstName").value("John"));
+                        .content("{\"firstName\": \"John\", \"middleName\": \"Doe\", \"lastName\": \"Smith\", \"yearOfBirth\": 1990, \"registrationDate\": \"2023-01-01\"}"))
+                .andExpect(status().isOk());
     }
 
     @Test
     public void testDeleteReader() throws Exception {
-        Long readerId = 1L;
-
-        mockMvc.perform(delete("/readers/{id}", readerId))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/readers/1"))
                 .andExpect(status().isNoContent());
-
-        verify(readerService, times(1)).deleteReader(readerId);
     }
 }

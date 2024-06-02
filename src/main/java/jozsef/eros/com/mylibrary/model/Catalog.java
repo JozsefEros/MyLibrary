@@ -24,7 +24,7 @@ public class Catalog {
     @Column()
     private String genre;
 
-    @Column(nullable = false)
+    @Column()
     private int published;
 
     @Column(nullable = false)

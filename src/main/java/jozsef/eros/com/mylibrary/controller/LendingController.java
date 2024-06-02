@@ -34,7 +34,12 @@ public class LendingController {
     public Lending createLending(@Valid @RequestBody Lending lending) {
         return lendingService.createLending(lending);
     }
-
+    /*
+    @PostMapping("/lend")
+    public void lendBook(@RequestParam Long bookId) {
+        lendingService.updateLending(bookId, lendingDetails);
+    }
+*/
     @PutMapping("/{id}")
     public ResponseEntity<Lending> updateLending(@PathVariable Long id, @Valid @RequestBody Lending lendingDetails) {
         Lending updateLending = lendingService.updateLending(id, lendingDetails);

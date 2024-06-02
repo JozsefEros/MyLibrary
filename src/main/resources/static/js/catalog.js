@@ -3,11 +3,13 @@ async function fetchCatalogTable() {
         const response = await fetch('/catalog');
         if (!response.ok) {
             console.error('Hiba történt:', response.status, response.statusText);
+            showMessageModal('Hiba történt a katalógus betöltésekor!', false);
             return;
         }
         const books = await response.json();
         if (!Array.isArray(books)) {
-            console.error('A válasz nem egy tömb:', books);
+            console.error('Hiba! A válasz nem tömb!', books);
+            showMessageModal('Hiba történt a katalógus adatainak feldolgozásakor!', false);
             return;
         }
     const booksBody = document.getElementById('catalog-body');
@@ -27,8 +29,10 @@ async function fetchCatalogTable() {
                 `;
         booksBody.appendChild(tr);
     });
+        showMessageModal('A katalógus sikeresen betöltve!', true);
 } catch (error) {
-        console.error('Hiba történt:', error);
+        console.error('Hiba történt a katalógus betöltésekor!', error);
+        showMessageModal('Hiba történt a katalógus betöltésekor!', false);
     }
 }
 
@@ -40,7 +44,7 @@ async function addBook() {
     const published = document.getElementById('publishedNew').value;
     const language = document.getElementById('languageNew').value;
     const isbn = document.getElementById('isbnNew').value;
-    const available = document.getElementById('isAvailableNew').value;
+    const available = document.getElementById('availableNew').value;
 
     try {
         const response = await fetch('/catalog', {
@@ -62,12 +66,15 @@ async function addBook() {
 
         if (response.ok) {
             fetchCatalogTable();
+            showMessageModal('Az új könyv sikeresen felvéve az adatbázisba!', true);
         } else {
             const errorData = await response.json();
             console.error('Hiba az új könyv hozzáadásakor!:', response.statusText, errorData);
+            showMessageModal('Hiba történt a könyv adatainak mentése során!', false);
         }
     } catch (error) {
         console.error('Hiba az adatok betöltésekor!:', error);
+        showMessageModal('Hiba történt a könyv adatainak mentése során!', false);
     }
     document.getElementById('titleNew').value = '';
     document.getElementById('authorNew').value = '';
@@ -77,7 +84,6 @@ async function addBook() {
     document.getElementById('languageNew').value = '';
     document.getElementById('isbnNew').value = '';
     document.getElementById('availableNew').value = '';
-
 }
 
 async function getBookById() {
@@ -95,12 +101,14 @@ async function getBookById() {
             document.getElementById('language').value = book.language;
             document.getElementById('isbn').value = book.isbn;
             document.getElementById('available').value = book.available;
-
+            showMessageModal('A könyv sikeresen betöltve!', true);
         } else {
             console.error('A könyv nem található!');
+            showMessageModal('A könyv nem található az adatbázisban!', false);
         }
     } catch (error) {
         console.error('Hiba az adatok betöltésekor!:', error);
+        showMessageModal('Hiba történt a könyv adatainak betöltésekor!', false);
     }
 }
 
@@ -113,7 +121,7 @@ async function updateBook() {
     const publisher = document.getElementById('publisher').value;
     const language = document.getElementById('language').value;
     const isbn = document.getElementById('isbn').value;
-    const isAvailable = document.getElementById('available').value;
+    const available = document.getElementById('available').value;
 
     try {
         const response = await fetch(`/catalog/${id}`, {
@@ -135,12 +143,15 @@ async function updateBook() {
 
         if (response.ok) {
             fetchCatalogTable();
+            showMessageModal('A könyv adatait sikeresen frissítettük!', true);
         } else {
             const errorData = await response.json();
             console.error('Hiba az adatok frissítése során:', response.statusText, errorData);
+            showMessageModal('Hiba a könyv adatainak frissítésekor!', false);
         }
     } catch (error) {
         console.error('Hiba az adatok betöltésekor!:', error);
+        showMessageModal('Hiba a könyv adatainak frissítésekor!', false);
     }
     document.getElementById('title').value = null;
     document.getElementById('author').value = '';
@@ -163,11 +174,14 @@ async function deleteBook() {
 
         if (response.ok) {
             fetchCatalogTable();
+            showMessageModal('A könyvet sikeresen töröltük az adatbázisból!', true);
         } else {
             console.error('Hiba a könyv törlésekor!');
+            showMessageModal('Hiba a könyv törlésekor!', false);
         }
     } catch (error) {
         console.error('Hiba az adatok betöltésekor!', error);
+        showMessageModal('Hiba a könyv törlésekor!', false);
     }
     document.getElementById('bookIdDelete').value = null;
 

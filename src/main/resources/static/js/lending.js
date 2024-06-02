@@ -3,6 +3,8 @@ const currentDay = currentDate.toISOString().split('T')[0];
 const expirationDate = new Date();
 expirationDate.setDate(currentDate.getDate() + 30);
 const expirationDay = expirationDate.toISOString().split('T')[0];
+let selectedReader;
+let selectedBook;
 
 async function searchReaders() {
     const name = document.getElementById('searchReader').value;
@@ -31,6 +33,7 @@ function selectReader(row, id, name) {
     row.classList.add('selected');
     document.getElementById('selectedReaderId').textContent = id;
     document.getElementById('selectedReaderName').textContent = name;
+    selectedReader = id;
 }
 
 async function searchBooks() {
@@ -81,13 +84,14 @@ function selectBook(row, id, authortitle) {
     row.classList.add('selected');
     document.getElementById('selectedBookId').textContent = id;
     document.getElementById('selectedBookId').textContent = authortitle;
+    selectedBook = id;
 }
 
 async function createLending() {
-    const reader = document.getElementById('reader').value;
-    const book = document.getElementById('book').value;
-    const lendingDate = document.getElementById('lendingDate').value;
-    const expirationDate = document.getElementById('expirationDate').value;
+    const reader = selectedReader;
+    const book = selectedBook;
+    const lendingDate = currentDay;
+    const expirationDate = expirationDay;
 
     try {
         const response = await fetch('/lendings', {
@@ -96,10 +100,10 @@ async function createLending() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                reader: reader.id,
-                book: book.id,
-                lendingDate: currentDay,
-                expirationDate: expirationDay
+                reader,
+                book,
+                lendingDate,
+                expirationDate
             })
         });
         if (response.ok) {
@@ -145,5 +149,31 @@ async function fetchLendingTable() {
         });
     } catch (error) {
         console.error('Hiba történt:', error);
+    }
+}
+
+async function updateBook() {
+    const id = selectedBook;
+    const available = "Nem";
+    try {
+        const response = await fetch(`/catalog/${id}/availability`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                available
+            })
+        });
+
+        if (response.ok) {
+            console.log('A könyv elérhetősége sikeresen frissítve.');
+            fetchLendingTable(); // Ha szükséges, újratöltjük a kölcsönzési táblát
+        } else {
+            const errorData = await response.json();
+            console.error('Hiba az adatok frissítése során:', response.statusText, errorData);
+        }
+    } catch (error) {
+        console.error('Hiba az adatok betöltésekor!:', error);
     }
 }

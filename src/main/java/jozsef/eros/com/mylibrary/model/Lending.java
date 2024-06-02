@@ -14,10 +14,10 @@ public class Lending {
     private Long id;
 
     @NotNull
-    private int reader;
+    private Integer reader;
 
     @NotNull
-    private int book;
+    private Integer book;
 
     @Column(nullable = false)
     private LocalDate lendingDate;
@@ -37,20 +37,19 @@ public class Lending {
     }
 
     @NotNull
-    public int getReader() {
+    public Integer getReader() {
         return reader;
     }
 
-    public void setReader(@NotNull int reader) {
+    public void setReader(@NotNull Integer reader) {
         this.reader = reader;
     }
 
-    @NotNull
-    public int getBook() {
+    public @NotNull Integer getBook() {
         return book;
     }
 
-    public void setBook(@NotNull int book) {
+    public void setBook(@NotNull Integer book) {
         this.book = book;
     }
 

@@ -7,12 +7,19 @@
     <link rel="stylesheet" href="/css/styles.css">
     <script src="/js/catalog.js"></script>
     <script src="/js/css.js"></script>
+    <script src="/js/message.js"></script>
 </head>
 <body>
+<div id="messageModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <p id="modalMessage"></p>
+    </div>
+</div>
 <nav>
     <ul>
         <li><a href="index.html">Olvasók</a></li>
-        <li><a href="catalog.html">Könyvek</a></li>
+        <li><a href="catalog.html" class="active">Könyvek</a></li>
         <li><a href="lending.html">Kölcsönzés</a></li>
     </ul>
 </nav>
@@ -35,7 +42,7 @@
         </div>
         <div class="form-row">
             <input type="text" id="isbnNew" placeholder="ISBN szám" >
-            <input type="text" id="isAvailableNew" placeholder="Elérhető" >
+            <input type="text" id="availableNew" placeholder="Elérhető" >
         </div>
         <div class="form-row full-width">
             <button id="new-book-button">Új könyv felvétele</button>
@@ -68,7 +75,7 @@
         </div>
         <div class="form-row">
             <input type="text" id="isbn" placeholder="ISBN szám" >
-            <input type="text" id="isAvailable" placeholder="Elérhető" >
+            <input type="text" id="available" placeholder="Elérhető" >
         </div>
         <div class="form-row full-width">
             <button id="modify-book-button">Módosítás</button>
