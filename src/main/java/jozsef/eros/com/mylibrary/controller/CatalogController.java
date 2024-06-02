@@ -60,4 +60,13 @@ public class CatalogController {
     public List<Catalog> findBooksByAuthor(@RequestParam String author) {
         return catalogService.findBooksByAuthor(author);
     }
+
+    @PutMapping("/lend/{id}")
+    public ResponseEntity<Catalog> lendBook(@PathVariable Long id, @RequestBody Catalog catalog) {
+        Catalog lendBook = catalogService.lendBook(id, catalog);
+        if (lendBook != null) {
+            return ResponseEntity.ok(lendBook);
+        }
+        return ResponseEntity.notFound().build();
+    }
 }

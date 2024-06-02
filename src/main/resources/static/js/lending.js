@@ -25,6 +25,7 @@ async function searchReaders() {
         row.addEventListener('click', () => selectReader(row, reader.id, fullName));
         tableBody.appendChild(row);
     });
+    showMessageModal('Az olvasók listája sikeresen betöltve!', true);
 }
 
 function selectReader(row, id, name) {
@@ -34,6 +35,7 @@ function selectReader(row, id, name) {
     document.getElementById('selectedReaderId').textContent = id;
     document.getElementById('selectedReaderName').textContent = name;
     selectedReader = id;
+    showMessageModal(`${name} sikeresen kiválasztva!`, true);
 }
 
 async function searchBooks() {
@@ -55,6 +57,7 @@ async function searchBooks() {
         row.addEventListener('click', () => selectBook(row, book.id, authorTitle));
         tableBook.appendChild(row);
     });
+    showMessageModal(`A könyvek listája sikeresen betöltve!`, true);
 }
 
 async function searchAuthors() {
@@ -76,6 +79,7 @@ async function searchAuthors() {
         row.addEventListener('click', () => selectBook(row, book.id, authorTitle));
         tableBook.appendChild(row);
     });
+    showMessageModal(`A könyvek listája sikeresen betöltve!`, true);
 }
 
 function selectBook(row, id, authortitle) {
@@ -85,6 +89,7 @@ function selectBook(row, id, authortitle) {
     document.getElementById('selectedBookId').textContent = id;
     document.getElementById('selectedBookId').textContent = authortitle;
     selectedBook = id;
+    showMessageModal(`${authortitle} könyv sikeresen kiválasztva!`, true);
 }
 
 async function createLending() {
@@ -108,6 +113,7 @@ async function createLending() {
         });
         if (response.ok) {
             fetchLendingTable();
+            showMessageModal(`A kölcsönzés sikeres!`, true);
         } else {
             const errorData = await response.json();
             console.error('Hiba az új kölcsönzésnél!:', response.statusText, errorData);
@@ -122,8 +128,9 @@ async function createLending() {
 }
 
 async function fetchLendingTable() {
+    const id = selectedReader;
     try {
-        const response = await fetch('/lending/${reader}');
+        const response = await fetch('/lendings/${id}');
         if (!response.ok) {
             console.error('Hiba történt:', response.status, response.statusText);
             return;
@@ -168,12 +175,42 @@ async function updateBook() {
 
         if (response.ok) {
             console.log('A könyv elérhetősége sikeresen frissítve.');
-            fetchLendingTable(); // Ha szükséges, újratöltjük a kölcsönzési táblát
+            //fetchLendingTable();
         } else {
             const errorData = await response.json();
             console.error('Hiba az adatok frissítése során:', response.statusText, errorData);
         }
     } catch (error) {
         console.error('Hiba az adatok betöltésekor!:', error);
+    }
+}
+
+async function lendBook() {
+    const id = selectedBook;
+    console.log(`Lending book with id: ${id}`);
+
+    try {
+        const response = await fetch(`/catalog/lend/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                available: "Nem"
+            })
+        });
+
+        if (response.ok) {
+            console.log('Book status updated successfully.');
+            //fetchLendingTable();
+            showMessageModal('A könyv státuszát sikeresen frissítettük!', true);
+        } else {
+            const errorData = await response.json();
+            console.error('Error updating book status:', response.statusText, errorData); // Debug üzenet
+            showMessageModal('Hiba a könyv státuszának módosításakor!', false);
+        }
+    } catch (error) {
+        console.error('Error loading data:', error); // Debug üzenet
+        showMessageModal('Hiba a könyv státuszának módosításakor!', false);
     }
 }

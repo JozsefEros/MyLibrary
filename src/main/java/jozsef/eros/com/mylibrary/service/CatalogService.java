@@ -40,6 +40,15 @@ public class CatalogService {
         return null;
     }
 
+    public Catalog lendBook(Long id, Catalog catalog) {
+        Catalog lend = catalogRepository.findById(id).orElse(null);
+        if (lend != null) {
+            lend.setAvailable(catalog.getAvailable());
+            return catalogRepository.save(lend);
+        }
+        return null;
+    }
+
     public void deleteCatalog(Long id) {
         catalogRepository.deleteById(id);
     }
