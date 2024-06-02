@@ -137,4 +137,19 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub MyLibrary Repository</name>
+            <url>https://maven.pkg.github.com/JozsefEros/MyLibrary</url>
+        </repository>
+    </distributionManagement>
+    <repositories>
+        <repository>
+            <id>github</id>
+            <name>GitHub MyLibrary Repository</name>
+            <url>https://maven.pkg.github.com/JozsefEros/MyLibrary</url>
+        </repository>
+    </repositories>
+
 </project>
