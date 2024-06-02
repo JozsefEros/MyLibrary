@@ -39,7 +39,7 @@ public class ReaderControllerTest {
     @Test
     public void testGetReaderById() throws Exception {
         Reader reader = new Reader();
-        reader.setId(1L);
+        reader.setId(1);
         Mockito.when(readerService.getReaderById(1L)).thenReturn(reader);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/readers/1")
@@ -62,7 +62,7 @@ public class ReaderControllerTest {
     @Test
     public void testUpdateReader() throws Exception {
         Reader reader = new Reader();
-        reader.setId(1L);
+        reader.setId(1);
         Mockito.when(readerService.updateReader(Mockito.eq(1L), Mockito.any(Reader.class))).thenReturn(reader);
 
         mockMvc.perform(MockMvcRequestBuilders.put("/readers/1")

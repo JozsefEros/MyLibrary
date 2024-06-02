@@ -15,7 +15,7 @@ public class Reader {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @NotBlank(message = "A vezetéknév nem lehet üres!")
     @Column(nullable = false)
@@ -43,11 +43,11 @@ public class Reader {
     @OneToMany(mappedBy = "reader", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Lending> lendings;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

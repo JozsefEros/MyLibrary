@@ -14,7 +14,7 @@ public class ReaderTest {
     public void testReaderGettersAndSetters() {
         Reader reader = new Reader();
 
-        reader.setId(1L);
+        reader.setId(1);
         reader.setFirstName("John");
         reader.setMiddleName("Doe");
         reader.setLastName("Smith");
@@ -23,7 +23,7 @@ public class ReaderTest {
         reader.setCreatedAt(LocalDate.now());
         reader.setModifiedAt(LocalDate.now());
 
-        assertEquals(1L, reader.getId());
+        assertEquals(1, reader.getId());
         assertEquals("John", reader.getFirstName());
         assertEquals("Doe", reader.getMiddleName());
         assertEquals("Smith", reader.getLastName());

@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const currentYear = new Date().getFullYear();
     const yearSelectElements = document.querySelectorAll('select[id^="yearOfBirth"]');
 

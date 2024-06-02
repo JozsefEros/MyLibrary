@@ -1,13 +1,13 @@
 package jozsef.eros.com.mylibrary;
 
-import jozsef.eros.com.mylibrary.model.Catalog;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
+import jozsef.eros.com.mylibrary.model.Catalog;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.time.LocalDate;
 import java.util.Set;
 

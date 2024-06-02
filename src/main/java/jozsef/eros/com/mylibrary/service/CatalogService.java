@@ -1,7 +1,6 @@
 package jozsef.eros.com.mylibrary.service;
 
 import jozsef.eros.com.mylibrary.model.Catalog;
-import jozsef.eros.com.mylibrary.model.Reader;
 import jozsef.eros.com.mylibrary.repository.CatalogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

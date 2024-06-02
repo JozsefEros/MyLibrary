@@ -1,23 +1,25 @@
 package jozsef.eros.com.mylibrary;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
+import jozsef.eros.com.mylibrary.model.Lending;
+import org.junit.jupiter.api.Test;
+
 import java.time.LocalDate;
 import java.util.Set;
-import jozsef.eros.com.mylibrary.model.Lending;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LendingTest {
 
-    private Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+    private final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
 
     @Test
     public void testLendingValidation() {
         Lending lending = new Lending();
-        lending.setReader(123); // Példa érték
-        lending.setBook(456); // Példa érték
+        lending.setReader(lending.getReader());
+        lending.setBook(lending.getBook());
         lending.setLendingDate(LocalDate.now());
 
         Set<ConstraintViolation<Lending>> violations = validator.validate(lending);
@@ -28,23 +30,23 @@ public class LendingTest {
     public void testReaderIdNotNull() {
         Lending lending = new Lending();
         lending.setReader(null);
-        lending.setBook(456);
+        lending.setBook(lending.getBook());
         lending.setLendingDate(LocalDate.now());
 
         Set<ConstraintViolation<Lending>> violations = validator.validate(lending);
         assertFalse(violations.isEmpty());
-        assertEquals("must not be null", violations.iterator().next().getMessage());
+        assertEquals("Az olvasó azonosítója nem lehet üres!", violations.iterator().next().getMessage());
     }
 
     @Test
     public void testBookIdNotNull() {
         Lending lending = new Lending();
-        lending.setReader(22);
+        lending.setReader(lending.getReader());
         lending.setBook(null);
         lending.setLendingDate(LocalDate.now());
 
         Set<ConstraintViolation<Lending>> violations = validator.validate(lending);
         assertFalse(violations.isEmpty());
-        assertEquals("must not be null", violations.iterator().next().getMessage());
+        assertEquals("A könyv azonosítója nem lehet üres!", violations.iterator().next().getMessage());
     }
 }

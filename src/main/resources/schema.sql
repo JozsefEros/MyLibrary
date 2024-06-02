@@ -19,4 +19,13 @@ CREATE TABLE catalog (
     language VARCHAR(20) NOT NULL,
     isbn VARCHAR(13) NOT NULL,
     available VARCHAR(4) NULL
-)
+);
+
+CREATE TABLE lending (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    book int NOT NULL,
+    reader int NOT NULL,
+    lending_date date NOT NULL,
+    expiration_date date NOT NULL,
+    return_date date NOT NULL
+);

@@ -11,7 +11,7 @@ public class Catalog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @NotBlank(message = "A könyv címe nem lehet üres!")
     @Column(nullable = false)
@@ -43,11 +43,11 @@ public class Catalog {
     private Set<Lending> lendings;
 
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -55,15 +55,15 @@ public class Catalog {
         return title;
     }
 
-    public void setTitle (String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public  String getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor (String author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 

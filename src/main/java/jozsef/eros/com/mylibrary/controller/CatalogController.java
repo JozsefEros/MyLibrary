@@ -2,7 +2,6 @@ package jozsef.eros.com.mylibrary.controller;
 
 import jakarta.validation.Valid;
 import jozsef.eros.com.mylibrary.model.Catalog;
-import jozsef.eros.com.mylibrary.model.Reader;
 import jozsef.eros.com.mylibrary.service.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

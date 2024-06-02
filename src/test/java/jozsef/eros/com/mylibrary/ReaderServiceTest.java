@@ -40,12 +40,12 @@ public class ReaderServiceTest {
     @Test
     public void testGetReaderById() {
         Reader reader = new Reader();
-        reader.setId(1L);
+        reader.setId(1);
         when(readerRepository.findById(1L)).thenReturn(Optional.of(reader));
 
         Reader foundReader = readerService.getReaderById(1L);
         assertNotNull(foundReader);
-        assertEquals(1L, foundReader.getId());
+        assertEquals(1, foundReader.getId());
     }
 
     @Test
@@ -61,7 +61,7 @@ public class ReaderServiceTest {
     @Test
     public void testUpdateReader() {
         Reader existingReader = new Reader();
-        existingReader.setId(1L);
+        existingReader.setId(1);
         when(readerRepository.findById(1L)).thenReturn(Optional.of(existingReader));
         when(readerRepository.save(any(Reader.class))).thenReturn(existingReader);
 

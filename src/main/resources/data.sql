@@ -163,3 +163,13 @@ VALUES
     ('The Nightingale','Kristin Hannah','Historical Fiction','2015','St. Martin`s Press','English','9781447283051','igen'),
     ('A tél királynője','Hans Christian Andersen','Fairy Tale','1844','Palladis Rendelet','Hungarian','9789639478011','igen'),
     ('The Godfather','Mario Puzo','Crime Fiction','1969','G.P. Putnam`s Sons','English','9780451205766','igen');
+
+INSERT INTO lending (book, reader, lending_date, expiration_date, return_date)
+SELECT
+    FLOOR(1 + (RAND() * 123)), -- Random book number between 1 and 123
+    FLOOR(1 + (RAND() * 20)), -- Random reader number between 1 and 20
+    DATEADD('DAY', FLOOR(1 + (RAND() * 151)), DATE '2024-01-01'), -- Random lending_date between 2024-01-01 and 2024-05-31
+    DATEADD('DAY', 30, DATEADD('DAY', FLOOR(1 + (RAND() * 151)), DATE '2024-01-01')), -- expiration_date 30 days after lending_date
+    DATEADD('DAY', FLOOR(1 + (RAND() * 30)), DATEADD('DAY', FLOOR(1 + (RAND() * 151)), DATE '2024-01-01')) -- Random return_date between lending_date and expiration_date
+FROM
+    SYSTEM_RANGE(1, 50);

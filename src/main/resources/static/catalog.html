@@ -21,6 +21,7 @@
         <li><a href="index.html">Olvasók</a></li>
         <li><a href="catalog.html" class="active">Könyvek</a></li>
         <li><a href="lending.html">Kölcsönzés</a></li>
+        <li><a href="userlendings.html">Kölcsönzéseim</a></li>
     </ul>
 </nav>
 
@@ -37,12 +38,12 @@
             <input type="number" id="publishedNew" placeholder="Kiadás éve" required>
         </div>
         <div class="form-row">
-            <input type="text" id="publisherNew" placeholder="Kiadó" >
-            <input type="text" id="languageNew" placeholder="Nyelv" >
+            <input type="text" id="publisherNew" placeholder="Kiadó">
+            <input type="text" id="languageNew" placeholder="Nyelv">
         </div>
         <div class="form-row">
-            <input type="text" id="isbnNew" placeholder="ISBN szám" >
-            <input type="text" id="availableNew" placeholder="Elérhető" >
+            <input type="text" id="isbnNew" placeholder="ISBN szám">
+            <input type="text" id="availableNew" placeholder="Elérhető">
         </div>
         <div class="form-row full-width">
             <button id="new-book-button">Új könyv felvétele</button>
@@ -70,12 +71,12 @@
             <input type="number" id="published" placeholder="Kiadás éve" required>
         </div>
         <div class="form-row">
-            <input type="text" id="publisher" placeholder="Kiadó" >
-            <input type="text" id="language" placeholder="Nyelv" >
+            <input type="text" id="publisher" placeholder="Kiadó">
+            <input type="text" id="language" placeholder="Nyelv">
         </div>
         <div class="form-row">
-            <input type="text" id="isbn" placeholder="ISBN szám" >
-            <input type="text" id="available" placeholder="Elérhető" >
+            <input type="text" id="isbn" placeholder="ISBN szám">
+            <input type="text" id="available" placeholder="Elérhető">
         </div>
         <div class="form-row full-width">
             <button id="modify-book-button">Módosítás</button>
@@ -97,7 +98,7 @@
 
 <div class="form-container full-width">
     <h2>Alaphelyzet</h2>
-    <form onsubmit ='preventDefault(); resetForms()'>
+    <form onsubmit='preventDefault(); resetForms()'>
         <div class="form-row full-width">
             <button id="reset-form">Alaphelyzet</button>
         </div>
@@ -121,14 +122,14 @@
     </tr>
     </thead>
 
-        <tbody id="catalog-body">
-            <!-- Itt jelennek majd meg a sorok -->
-        </tbody>
+    <tbody id="catalog-body">
+    <!-- Itt jelennek majd meg a sorok -->
+    </tbody>
 </table>
-    <script>
-        document.getElementById('new-book-button').addEventListener('click', () => fetchCatalogTable());
-        document.getElementById('delete-book-button').addEventListener('click', () => fetchCatalogTable());
-        document.getElementById('modify-book-button').addEventListener('click', () => fetchCatalogTable());
-    </script>
+<script>
+    document.getElementById('new-book-button').addEventListener('click', () => fetchCatalogTable());
+    document.getElementById('delete-book-button').addEventListener('click', () => fetchCatalogTable());
+    document.getElementById('modify-book-button').addEventListener('click', () => fetchCatalogTable());
+</script>
 </body>
 </html>

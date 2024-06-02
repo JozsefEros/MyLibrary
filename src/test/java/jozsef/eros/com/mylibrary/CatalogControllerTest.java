@@ -39,7 +39,7 @@ public class CatalogControllerTest {
     @Test
     public void testGetCatalogById() throws Exception {
         Catalog catalog = new Catalog();
-        catalog.setId(1L);
+        catalog.setId(1);
         Mockito.when(catalogService.getCatalogById(1L)).thenReturn(catalog);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/catalog/1")
@@ -62,7 +62,7 @@ public class CatalogControllerTest {
     @Test
     public void testUpdateCatalog() throws Exception {
         Catalog catalog = new Catalog();
-        catalog.setId(1L);
+        catalog.setId(1);
         Mockito.when(catalogService.updateCatalog(Mockito.eq(1L), Mockito.any(Catalog.class))).thenReturn(catalog);
 
         mockMvc.perform(MockMvcRequestBuilders.put("/catalog/1")

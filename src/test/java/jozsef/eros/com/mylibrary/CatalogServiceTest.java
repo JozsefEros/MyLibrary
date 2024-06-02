@@ -1,3 +1,5 @@
+package jozsef.eros.com.mylibrary;
+
 import jozsef.eros.com.mylibrary.model.Catalog;
 import jozsef.eros.com.mylibrary.repository.CatalogRepository;
 import jozsef.eros.com.mylibrary.service.CatalogService;
@@ -38,12 +40,12 @@ public class CatalogServiceTest {
     @Test
     public void testGetCatalogById() {
         Catalog catalog = new Catalog();
-        catalog.setId(1L);
+        catalog.setId(1);
         when(catalogRepository.findById(1L)).thenReturn(Optional.of(catalog));
 
         Catalog foundCatalog = catalogService.getCatalogById(1L);
         assertNotNull(foundCatalog);
-        assertEquals(1L, foundCatalog.getId());
+        assertEquals(1, foundCatalog.getId());
     }
 
     @Test
@@ -59,7 +61,7 @@ public class CatalogServiceTest {
     @Test
     public void testUpdateCatalog() {
         Catalog existingCatalog = new Catalog();
-        existingCatalog.setId(1L);
+        existingCatalog.setId(1);
         when(catalogRepository.findById(1L)).thenReturn(Optional.of(existingCatalog));
         when(catalogRepository.save(any(Catalog.class))).thenReturn(existingCatalog);
 

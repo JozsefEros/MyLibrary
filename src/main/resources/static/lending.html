@@ -2,15 +2,15 @@
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Kölcsönzés</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/styles.css" rel="stylesheet">
     <script src="/js/lending.js"></script>
     <script src="/js/css.js"></script>
     <script src="/js/message.js"></script>
 </head>
 <body>
-<div id="messageModal" class="modal">
+<div class="modal" id="messageModal">
     <div class="modal-content">
         <span class="close" id="closeModal">&times;</span>
         <p id="modalMessage"></p>
@@ -20,7 +20,8 @@
     <ul>
         <li><a href="index.html">Olvasók</a></li>
         <li><a href="catalog.html">Könyvek</a></li>
-        <li><a href="lending.html" class = "active">Kölcsönzés</a></li>
+        <li><a class="active" href="lending.html">Kölcsönzés</a></li>
+        <li><a href="userlendings.html">Kölcsönzéseim</a></li>
     </ul>
 </nav>
 <h1>Kölcsönzés</h1>
@@ -28,7 +29,7 @@
     <h2>Olvasó keresése</h2>
     <form onsubmit="event.preventDefault(); searchReaders();">
         <div class="form-row">
-            <input type="text" id="searchReader" placeholder="Keresés név alapján...">
+            <input id="searchReader" placeholder="Keresés név alapján..." type="text">
             <button onclick="searchReaders()">Keresés</button>
         </div>
     </form>
@@ -51,13 +52,13 @@
     <div class="form-row">
         <form onsubmit="event.preventDefault(); searchBooks();">
             <div class="form-group">
-                <input type="text" id="searchBook" placeholder="Keresés cím alapján...">
+                <input id="searchBook" placeholder="Keresés cím alapján..." type="text">
                 <button onclick="searchBooks()">Keresés</button>
             </div>
         </form>
         <form onsubmit="event.preventDefault(); searchAuthors();">
             <div class="form-group">
-                <input type="text" id="searchAuthor" placeholder="Keresés szerző alapján...">
+                <input id="searchAuthor" placeholder="Keresés szerző alapján..." type="text">
                 <button onclick="searchAuthors()">Keresés</button>
             </div>
         </form>
@@ -80,7 +81,7 @@
 <span id="selectedReaderId"></span> - <span id="selectedReaderName">Nincs kiválasztva</span>
 <p><strong>Kiválasztott könyv:</strong></p> <span id="selectedBookId">Nincs kiválasztva</span>
 <p>
-    <button onclick="createLending(); lendBook()" >Kikölcsönöz</button>
+    <button onclick="createLending(); lendBook()">Kikölcsönöz</button>
 </p>
 </body>
 </html>

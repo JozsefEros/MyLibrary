@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>My Mini Library</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/styles.css" rel="stylesheet">
     <script src="/js/readers.js"></script>
     <script src="/js/css.js"></script>
     <script src="/js/message.js"></script>
 </head>
 <body>
-<div id="messageModal" class="modal">
+<div class="modal" id="messageModal">
     <div class="modal-content">
         <span class="close" id="closeModal">&times;</span>
         <p id="modalMessage"></p>
@@ -18,9 +18,10 @@
 </div>
 <nav>
     <ul>
-        <li><a href="index.html" class="active">Olvasók</a></li>
+        <li><a class="active" href="index.html">Olvasók</a></li>
         <li><a href="catalog.html">Könyvek</a></li>
         <li><a href="lending.html">Kölcsönzés</a></li>
+        <li><a href="userlendings.html">Kölcsönzéseim</a></li>
     </ul>
 </nav>
 <h1>Olvasók kezelése</h1>
@@ -29,17 +30,17 @@
     <h2>Új olvasó hozzáadása</h2>
     <form onsubmit="event.preventDefault(); addReader();">
         <div class="form-row">
-            <input type="text" id="firstNameNew" placeholder="Vezetéknév" required>
-            <input type="text" id="middleNameNew" placeholder="Keresztnév" required>
+            <input id="firstNameNew" placeholder="Vezetéknév" required type="text">
+            <input id="middleNameNew" placeholder="Keresztnév" required type="text">
         </div>
         <div class="form-row">
-            <input type="text" id="lastNameNew" placeholder="2. keresztnév">
+            <input id="lastNameNew" placeholder="2. keresztnév" type="text">
             <select id="yearOfBirthNew" required>
-                <option value="" disabled selected>Születési év</option>
+                <option disabled selected value="">Születési év</option>
             </select>
         </div>
         <div class="form-row">
-            <input type="date" id="registrationDateNew" placeholder="Regisztráció dátuma" required>
+            <input id="registrationDateNew" placeholder="Regisztráció dátuma" required type="date">
         </div>
         <div class="form-row full-width">
             <button id="new-reader-button">Új olvasó felvétele</button>
@@ -51,26 +52,26 @@
     <h2>Olvasó adatainak frissítése</h2>
     <form onsubmit="event.preventDefault(); getReaderById();">
         <div class="form-row full-width">
-            <input type="number" id="readerId" placeholder="Olvasó azonosítója" required>
+            <input id="readerId" placeholder="Olvasó azonosítója" required type="number">
         </div>
         <div class="form-row full-width">
             <button type="submit">Keresés</button>
         </div>
     </form>
-    <form onsubmit="event.preventDefault(); updateReader();" class="right-form">
+    <form class="right-form" onsubmit="event.preventDefault(); updateReader();">
         <div class="form-row">
-            <input type="text" id="firstName" placeholder="Vezetéknév" required>
-            <input type="text" id="middleName" placeholder="Keresztnév" required>
+            <input id="firstName" placeholder="Vezetéknév" required type="text">
+            <input id="middleName" placeholder="Keresztnév" required type="text">
         </div>
         <div class="form-row">
-            <input type="text" id="lastName" placeholder="2. keresztnév">
+            <input id="lastName" placeholder="2. keresztnév" type="text">
             <select id="yearOfBirth" required>
-                <option value="" disabled selected>Születési év</option>
+                <option disabled selected value="">Születési év</option>
                 <!-- Évek generálása JavaScript-tel -->
             </select>
         </div>
         <div class="form-row">
-            <input type="date" id="registrationDate" placeholder="Regisztráció dátuma">
+            <input id="registrationDate" placeholder="Regisztráció dátuma" type="date">
         </div>
         <div class="form-row full-width">
             <button id="modify-reader-button">Módosítás</button>
@@ -82,7 +83,7 @@
     <h2>Olvasó törlése</h2>
     <form onsubmit="event.preventDefault(); deleteReader();">
         <div class="form-row full-width">
-            <input type="number" id="readerIdDelete" placeholder="Olvasó azonosítója" required>
+            <input id="readerIdDelete" placeholder="Olvasó azonosítója" required type="number">
         </div>
         <div class="form-row full-width">
             <button id="delete-reader-button">Törlés</button>

@@ -3,8 +3,8 @@ package jozsef.eros.com.mylibrary.controller;
 import jakarta.validation.Valid;
 import jozsef.eros.com.mylibrary.model.Catalog;
 import jozsef.eros.com.mylibrary.model.Lending;
-import jozsef.eros.com.mylibrary.service.LendingService;
 import jozsef.eros.com.mylibrary.service.CatalogService;
+import jozsef.eros.com.mylibrary.service.LendingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +33,12 @@ public class LendingController {
             return ResponseEntity.ok(lending);
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/by-reader/{readerId}")
+    public ResponseEntity<List<Lending>> getLendingsByReaderId(@PathVariable Long readerId) {
+        List<Lending> lendings = lendingService.getLendingsByReaderId(readerId);
+        return ResponseEntity.ok(lendings);
     }
 
     @PostMapping

@@ -26,6 +26,10 @@ public class LendingService {
         return lendingRepository.findById(id).orElse(null);
     }
 
+    public List<Lending> getLendingsByReaderId(Long readerId) {
+        return lendingRepository.findByReaderId(readerId);
+    }
+
     public Lending createLending(Lending lending) {
         return lendingRepository.save(lending);
     }
@@ -38,7 +42,6 @@ public class LendingService {
             lending.setBook(lendingDetails.getBook());
             lending.setLendingDate(lendingDetails.getLendingDate());
             lending.setExpirationDate(lendingDetails.getExpirationDate());
-            /*catalogRepository.updateAvailabilityToNot(lendingDetails.getBook());*/
             return lendingRepository.save(lending);
 
         }

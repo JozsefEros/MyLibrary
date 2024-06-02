@@ -13,11 +13,16 @@ public class Lending {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    private Integer reader;
+    @ManyToOne
+    @JoinColumn(name = "reader_id")
+    @NotNull(message = "Az olvasó azonosítója nem lehet üres!")
+    private Reader reader;
 
-    @NotNull
-    private Integer book;
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    @NotNull(message = "A könyv azonosítója nem lehet üres!")
+    private Catalog book;
+
 
     @Column(nullable = false)
     private LocalDate lendingDate;
@@ -36,20 +41,19 @@ public class Lending {
         this.id = id;
     }
 
-    @NotNull
-    public Integer getReader() {
+    public Reader getReader() {
         return reader;
     }
 
-    public void setReader(@NotNull Integer reader) {
+    public void setReader(Reader reader) {
         this.reader = reader;
     }
 
-    public @NotNull Integer getBook() {
+    public Catalog getBook() {
         return book;
     }
 
-    public void setBook(@NotNull Integer book) {
+    public void setBook(Catalog book) {
         this.book = book;
     }
 

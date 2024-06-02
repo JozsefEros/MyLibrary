@@ -169,7 +169,7 @@ async function resetForms() {
     document.getElementById('readerIdDelete').value = null;
 }
 
-window.onload = function() {
+window.onload = function () {
     fetchReadersTable();
 
     document.getElementById('firstNameNew').value = '';
