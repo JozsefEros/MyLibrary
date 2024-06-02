@@ -33,7 +33,7 @@ public class LendingTest {
 
         Set<ConstraintViolation<Lending>> violations = validator.validate(lending);
         assertFalse(violations.isEmpty());
-        assertEquals("nem lehet null", violations.iterator().next().getMessage());
+        assertEquals("must not be null", violations.iterator().next().getMessage());
     }
 
     @Test
@@ -45,6 +45,6 @@ public class LendingTest {
 
         Set<ConstraintViolation<Lending>> violations = validator.validate(lending);
         assertFalse(violations.isEmpty());
-        assertEquals("nem lehet null", violations.iterator().next().getMessage());
+        assertEquals("must not be null", violations.iterator().next().getMessage());
     }
 }
