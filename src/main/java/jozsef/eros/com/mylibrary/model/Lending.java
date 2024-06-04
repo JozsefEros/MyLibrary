@@ -14,12 +14,12 @@ public class Lending {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "reader_id")
+    @JoinColumn(name = "reader")
     @NotNull(message = "Az olvasó azonosítója nem lehet üres!")
     private Reader reader;
 
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "book")
     @NotNull(message = "A könyv azonosítója nem lehet üres!")
     private Catalog book;
 

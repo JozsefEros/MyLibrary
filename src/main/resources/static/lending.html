@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Kölcsönzés</title>
+    <title>My Mini Library - Lending</title>
     <link href="/css/styles.css" rel="stylesheet">
     <script src="/js/lending.js"></script>
     <script src="/js/css.js"></script>
@@ -49,20 +49,22 @@
 </table>
 <div class="form-container">
     <h2>Könyv keresése</h2>
-    <div class="form-row">
-        <form onsubmit="event.preventDefault(); searchBooks();">
-            <div class="form-group">
-                <input id="searchBook" placeholder="Keresés cím alapján..." type="text">
-                <button onclick="searchBooks()">Keresés</button>
-            </div>
-        </form>
-        <form onsubmit="event.preventDefault(); searchAuthors();">
-            <div class="form-group">
-                <input id="searchAuthor" placeholder="Keresés szerző alapján..." type="text">
-                <button onclick="searchAuthors()">Keresés</button>
-            </div>
-        </form>
-    </div>
+    <form onsubmit="event.preventDefault(); searchBooks();">
+        <div class="form-row full-width">
+            <input id="searchBook" placeholder="Keresés cím alapján..." type="text">
+        </div>
+        <div class="form-row full-width">
+            <button onclick="searchBooks()">Keresés</button>
+        </div>
+    </form>
+    <form onsubmit="event.preventDefault(); searchAuthors();">
+        <div class="form-row full-width">
+            <input id="searchAuthor" placeholder="Keresés szerző alapján..." type="text">
+        </div>
+        <div class="form-row full-width">
+            <button onclick="searchAuthors()">Keresés</button>
+        </div>
+    </form>
 </div>
 <table id="resultsBooks">
     <thead>

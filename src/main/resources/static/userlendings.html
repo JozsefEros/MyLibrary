@@ -3,45 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Az olvasó kölcsönzései</title>
+    <title>My Mini Library - User lendings</title>
     <link href="/css/styles.css" rel="stylesheet">
+    <script src="/js/lending.js"></script>
 </head>
 <body>
+<nav>
+    <ul>
+        <li><a href="index.html">Olvasók</a></li>
+        <li><a href="catalog.html">Könyvek</a></li>
+        <li><a href="lending.html">Kölcsönzés</a></li>
+        <li><a class="active" href="userlendings.html">Kölcsönzéseim</a></li>
+    </ul>
+</nav>
 <h1>Az olvasó kölcsönzései</h1>
-<label for="readerId">Reader ID:</label>
-<input type="text" id="readerId">
-<button onclick="getLendings()">Get Lendings</button>
-
-<div id="lendingsTable">
-    <!-- lendings will be displayed here -->
+<div class="form-container">
+    <form onsubmit="event.preventDefault(); getLendings();">
+        <div class="form-row">
+            <input type="text" id="readerId" placeholder="Az olvasó azonosítója">
+            <button type="submit">Listáz</button>
+        </div>
+    </form>
 </div>
-
-<script>
-    function getLendings() {
-        const readerId = document.getElementById('readerId').value;
-        fetch(`/lendings/by-reader/${readerId}`)
-            .then(response => response.json())
-            .then(lendings => {
-                const lendingsTable = document.getElementById('lendingsTable');
-                lendingsTable.innerHTML = `
-                        <table border="1">
-                            <tr>
-                                <th>Title</th>
-                                <th>Author</th>
-                                <th>Expiration Date</th>
-                            </tr>
-                            ${lendings.map(lending => `
-                                <tr>
-                                    <td>${lending.book.title}</td>
-                                    <td>${lending.book.author}</td>
-                                    <td>${lending.expirationDate}</td>
-                                </tr>
-                            `).join('')}
-                        </table>
-                    `;
-            })
-            .catch(error => console.error('Error fetching lendings:', error));
-    }
-</script>
+<div id="lendingsTable">
+    <!-- itt jelennek meg a kijelölt olvasó kölcsönzései -->
+</div>
 </body>
 </html>

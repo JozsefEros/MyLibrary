@@ -214,3 +214,29 @@ async function lendBook() {
         showMessageModal('Hiba a könyv státuszának módosításakor!', false);
     }
 }
+
+function getLendings() {
+    const readerId = document.getElementById('readerId').value;
+    fetch(`/lendings/by-reader/${readerId}`)
+        .then(response => response.json())
+        .then(lendings => {
+            const lendingsTable = document.getElementById('lendingsTable');
+            lendingsTable.innerHTML = `
+                        <table border="1">
+                            <tr>
+                                <th>Cím</th>
+                                <th>Szerző</th>
+                                <th>Lejárati idő</th>
+                            </tr>
+                            ${lendings.map(lending => `
+                                <tr>
+                                    <td>${lending.book.title}</td>
+                                    <td>${lending.book.author}</td>
+                                    <td>${lending.expirationDate}</td>
+                                </tr>
+                            `).join('')}
+                        </table>
+                    `;
+        })
+        .catch(error => console.error('Error fetching lendings:', error));
+}

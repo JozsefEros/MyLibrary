@@ -42,8 +42,9 @@ public class LendingController {
     }
 
     @PostMapping
-    public Lending createLending(@Valid @RequestBody Lending lending) {
-        return lendingService.createLending(lending);
+    public ResponseEntity<Lending> createLending(@RequestBody Lending lending) {
+        Lending createdLending = lendingService.createLending(lending);
+        return ResponseEntity.ok(createdLending);
     }
 
     @PostMapping("/lend")
